@@ -335,31 +335,6 @@
       }
     },
     
-    /*
-      
-      {
-        methods: {
-          name: {
-            methodString: ...,
-            length: ...,
-            argsLength: ...
-          }
-        },
-        
-        totalMethodLength: ...,
-        
-        minMethodLength: ...,
-        maxMethodLength: ...,
-        
-        totalArgsLength: ...,
-        
-        minArgsLength: ...,
-        maxArgsLength: ...,
-        
-        numMethods: ...
-      }
-      
-    */
     getStats: function() {
       var stats = { };
       for (var prop in this.stats) {
