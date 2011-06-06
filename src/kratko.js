@@ -77,7 +77,7 @@
       var styleEl = document.createElement('style');
       styleEl.appendChild(document.createTextNode(
         '.kratko-wrapper { position:absolute;z-index:100;top:10px;left:10px;background:#dedeff;' +
-          'box-shadow:0px 0px 7px rgba(0,0,0,0.3);padding:10px;max-height:700px;' +
+          'box-shadow:0px 0px 7px rgba(0,0,0,0.3);padding:10px;max-height:700px; overflow-y: scroll' +
           'font-family:Optima,sans-serif; text-align: left; line-height:1.5; border: 1px solid #aaa }' +
         '.kratko-wrapper table { border-collapse: collapse; box-shadow: 0 0 1px #fff; }' +
         '.kratko-wrapper td, .kratko-wrapper th { border: 1px solid #ccc; padding: 5px; background: #fff; }' +
@@ -217,15 +217,16 @@
       linkEl.appendChild(document.createTextNode(methodName));
       
       var _this = this;    
-      linkEl.onclick = (function(methodString){
+      linkEl.onclick = (function(methodString, parentEl) {
         return function() {
+          console.log(parentEl);
           _this.previewEl.innerHTML = '';
           _this.previewEl.appendChild(document.createTextNode(methodString));
           _this.previewWrapperEl.style.left = (_this.wrapperEl.offsetWidth + _this.wrapperEl.offsetLeft) + 'px';
           _this.previewWrapperEl.style.display = '';
           return false;
         };
-      })(this.stats.methods[methodName].methodString);
+      })(this.stats.methods[methodName].methodString, linkEl.parentNode);
       
       nameEl.appendChild(linkEl);
       linkEl = null;
