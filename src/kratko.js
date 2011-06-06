@@ -88,7 +88,7 @@
         '.kratko-wrapper .overview span { margin-left: 10px }' +
         '.kratko-wrapper .hl { background:#ffc;padding:2px 5px;border-radius:3px}' +
         '.kratko-wrapper .close-trigger { position: absolute; top: 0; right: 5px; color: red; text-decoration: none }' +
-        '.kratko-preview { background: #fafaff; position: absolute; top: 38px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3) }' +
+        '.kratko-preview { background: #fafaff; position: absolute; top: 38px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); z-index: 100 }' +
         '.kratko-preview pre { margin: 0; padding: 10px; border: 1px solid #ccc; border-left: 0; display: inline-block; text-align: left }'
       ));
       document.getElementsByTagName('head')[0].appendChild(styleEl);
