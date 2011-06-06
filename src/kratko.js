@@ -109,12 +109,13 @@
       switchEl.innerHTML = '<form><label>Global object "name"</label><input><button type="button">Analyze</button></form>';
       this.wrapperEl.appendChild(switchEl);
       
-      var wrapperEl = this.wrapperEl;
+      var wrapperEl = this.wrapperEl, previewWrapperEl = this.previewWrapperEl;
       switchEl.childNodes[0].onsubmit = function() {
         var methodName = switchEl.childNodes[0].elements[0].value;
         
         if (methodName) {
           document.body.removeChild(wrapperEl);
+          document.body.removeChild(previewWrapperEl);
           new TableViewer(Kratko.getStatsFor(eval(methodName)));
         }
         return false;
