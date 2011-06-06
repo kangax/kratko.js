@@ -77,8 +77,8 @@
       var styleEl = document.createElement('style');
       styleEl.appendChild(document.createTextNode(
         '.kratko-wrapper { position:absolute;z-index:100;top:10px;left:10px;background:#dedeff;' +
-          'box-shadow:0px 0px 10px rgba(0,0,0,0.7);padding:10px;max-height:700px;' +
-          'font-family:Optima,sans-serif; text-align: left; line-height:1.5 }' +
+          'box-shadow:0px 0px 7px rgba(0,0,0,0.3);padding:10px;max-height:700px;' +
+          'font-family:Optima,sans-serif; text-align: left; line-height:1.5; border: 1px solid #aaa }' +
         '.kratko-wrapper table { border-collapse: collapse; box-shadow: 0 0 1px #fff; }' +
         '.kratko-wrapper td, .kratko-wrapper th { border: 1px solid #ccc; padding: 5px; background: #fff; }' +
         '.kratko-wrapper th { padding: 5px 10px; font-weight: bold; text-align: center }' +
@@ -86,10 +86,9 @@
         '.kratko-wrapper label { margin-right:5px; }' +
         '.kratko-wrapper .overview span { margin-left: 10px }' +
         '.kratko-wrapper .hl { background:#ffc;padding:2px 5px;border-radius:3px}' +
-        '.kratko-wrapper .close-trigger { position: absolute; top: 5px; right: 5px; color: red }' +
-        '.kratko-wrapper .preview { background: #fafaff; position: absolute; z-index; overflow: hidden }' +
-        '.kratko-wrapper .preview pre { margin: 0; padding: 10px; border: 1px solid #ccc; border-left: 0; font-size: 11px }' +
-        '.kratko-wrapper .shadow { height: 100%; width: 7px; position: absolute; left: -8px; top: 0; box-shadow: 3px 0 10px rgba(0,0,0,0.5); background: #ccc; }'
+        '.kratko-wrapper .close-trigger { position: absolute; top: 0; right: 5px; color: red; text-decoration: none }' +
+        '.kratko-preview { background: #fafaff; position: absolute; top: 38px; left: 438px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3) }' +
+        '.kratko-preview pre { margin: 0; padding: 10px; border: 1px solid #ccc; border-left: 0; display: inline-block; }'
       ));
       document.getElementsByTagName('head')[0].appendChild(styleEl);
     },
@@ -162,17 +161,13 @@
     
     buildPreview: function() {
       this.previewWrapperEl = document.createElement('div');
-      this.previewWrapperEl.className = 'preview';
+      this.previewWrapperEl.className = 'kratko-preview';
       this.previewWrapperEl.style.display = 'none';
-      
-      var shadowEl = document.createElement('div');
-      shadowEl.className = 'shadow';
       
       this.previewEl = document.createElement('pre');
       this.previewWrapperEl.appendChild(this.previewEl);
-      this.previewWrapperEl.appendChild(shadowEl);
       
-      this.wrapperEl.appendChild(this.previewWrapperEl);
+      document.body.appendChild(this.previewWrapperEl);
     },
     
     buildTableHeader: function() {
@@ -228,9 +223,7 @@
         return function() {
           previewEl.innerHTML = '';
           previewEl.appendChild(document.createTextNode(methodString));
-          
           previewWrapperEl.style.display = '';
-          previewWrapperEl.style.right = '-' + previewWrapperEl.offsetWidth + 'px';
           return false;
         };
       })(this.stats.methods[methodName].methodString);
