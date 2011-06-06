@@ -216,23 +216,7 @@
       linkEl.appendChild(document.createTextNode(methodName));
       
       var _this = this;
-      linkEl.onclick = (function(methodString, rowEl) {
-        return function() {
-          
-          if (TableViewer.selectedRowEl) {
-            TableViewer.selectedRowEl.className = TableViewer.selectedRowEl.className.replace('selected', '')
-          }
-          
-          TableViewer.selectedRowEl = rowEl;
-          rowEl.className = 'selected';
-          
-          _this.previewEl.innerHTML = '';
-          _this.previewEl.appendChild(document.createTextNode(methodString));
-          _this.previewWrapperEl.style.left = (_this.wrapperEl.offsetWidth + _this.wrapperEl.offsetLeft) + 'px';
-          _this.previewWrapperEl.style.display = '';
-          return false;
-        };
-      })(this.stats.methods[methodName].methodString, rowEl);
+      linkEl.onclick = this.createOnClickHandler(this.stats.methods[methodName].methodString, rowEl);
       
       nameEl.appendChild(linkEl);
       linkEl = null;
@@ -245,6 +229,25 @@
       rowEl.appendChild(argsLengthEl);
 
       this.tbodyEl.appendChild(rowEl);
+    },
+    
+    createOnClickHandler: function(methodString, rowEl) {
+      var _this = this;
+      return function() {
+        
+        if (TableViewer.selectedRowEl) {
+          TableViewer.selectedRowEl.className = TableViewer.selectedRowEl.className.replace('selected', '')
+        }
+        
+        TableViewer.selectedRowEl = rowEl;
+        rowEl.className = 'selected';
+        
+        _this.previewEl.innerHTML = '';
+        _this.previewEl.appendChild(document.createTextNode(methodString));
+        _this.previewWrapperEl.style.left = (_this.wrapperEl.offsetWidth + _this.wrapperEl.offsetLeft) + 'px';
+        _this.previewWrapperEl.style.display = '';
+        return false;
+      };
     }
   };
 
