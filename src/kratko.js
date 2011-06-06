@@ -77,11 +77,12 @@
       var styleEl = document.createElement('style');
       styleEl.appendChild(document.createTextNode(
         '.kratko-wrapper { position:absolute;z-index:100;top:10px;left:10px;background:#dedeff;' +
-          'box-shadow:0px 0px 7px rgba(0,0,0,0.3);padding:10px;max-height:700px; overflow-y: scroll' +
-          'font-family:Optima,sans-serif; text-align: left; line-height:1.5; border: 1px solid #aaa }' +
+          'box-shadow:0px 0px 7px rgba(0,0,0,0.3);padding:10px;max-height:700px;' +
+          'font-family:Optima,sans-serif; text-align: left; line-height:1.5; border: 1px solid #aaa; overflow-y: auto }' +
         '.kratko-wrapper table { border-collapse: collapse; box-shadow: 0 0 1px #fff; }' +
         '.kratko-wrapper td, .kratko-wrapper th { border: 1px solid #ccc; padding: 5px; background: #fff; }' +
         '.kratko-wrapper th { padding: 5px 10px; font-weight: bold; text-align: center }' +
+        '.kratko-wrapper tr.selected td { background: #ffc }' +
         '.kratko-wrapper .overview { text-align:left; overflow: hidden; }' +
         '.kratko-wrapper label { margin-right:5px; }' +
         '.kratko-wrapper .overview span { margin-left: 10px }' +
@@ -114,11 +115,7 @@
         
         if (methodName) {
           document.body.removeChild(wrapperEl);
-          new TableViewer(
-            Kratko.getStatsFor(
-              window[methodName]
-            )
-          );
+          new TableViewer(Kratko.getStatsFor(eval(methodName)));
         }
         return false;
       };
@@ -216,17 +213,24 @@
       linkEl.href = '#';
       linkEl.appendChild(document.createTextNode(methodName));
       
-      var _this = this;    
-      linkEl.onclick = (function(methodString, parentEl) {
+      var _this = this;
+      linkEl.onclick = (function(methodString, rowEl) {
         return function() {
-          console.log(parentEl);
+          
+          if (TableViewer.selectedRowEl) {
+            TableViewer.selectedRowEl.className = TableViewer.selectedRowEl.className.replace('selected', '')
+          }
+          
+          TableViewer.selectedRowEl = rowEl;
+          rowEl.className = 'selected';
+          
           _this.previewEl.innerHTML = '';
           _this.previewEl.appendChild(document.createTextNode(methodString));
           _this.previewWrapperEl.style.left = (_this.wrapperEl.offsetWidth + _this.wrapperEl.offsetLeft) + 'px';
           _this.previewWrapperEl.style.display = '';
           return false;
         };
-      })(this.stats.methods[methodName].methodString, linkEl.parentNode);
+      })(this.stats.methods[methodName].methodString, rowEl);
       
       nameEl.appendChild(linkEl);
       linkEl = null;
