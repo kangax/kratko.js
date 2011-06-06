@@ -75,7 +75,7 @@
     applyStyles: function() {
       var styleEl = document.createElement('style');
       styleEl.appendChild(document.createTextNode(
-        '.method-analyzer-wrapper { position:absolute;top:10px;left:10px;background:#dedeff;' +
+        '.method-analyzer-wrapper { position:absolute;z-index:100;top:10px;left:10px;background:#dedeff;' +
           'box-shadow:0px 0px 10px rgba(0,0,0,0.7);padding:10px;max-height:700px;overflow-y:scroll;' +
           'font-family:Optima,sans-serif; text-align: left; line-height:1.5 }' +
         '.method-analyzer-wrapper table { border-collapse: collapse; box-shadow: 0 0 1px #fff; }' +
