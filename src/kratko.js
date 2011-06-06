@@ -132,6 +132,7 @@
       var _this = this;
       closeEl.onclick = function() {
         _this.wrapperEl.parentNode.removeChild(_this.wrapperEl);
+        _this.wrapperEl.parentNode.removeChild(_this.previewWrapperEl);
         return false;
       };
     },
