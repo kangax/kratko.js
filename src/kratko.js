@@ -75,24 +75,24 @@
     applyStyles: function() {
       var styleEl = document.createElement('style');
       styleEl.appendChild(document.createTextNode(
-        '.method-analyzer-wrapper { position:absolute;z-index:100;top:10px;left:10px;background:#dedeff;' +
+        '.kratko-wrapper { position:absolute;z-index:100;top:10px;left:10px;background:#dedeff;' +
           'box-shadow:0px 0px 10px rgba(0,0,0,0.7);padding:10px;max-height:700px;overflow-y:scroll;' +
           'font-family:Optima,sans-serif; text-align: left; line-height:1.5 }' +
-        '.method-analyzer-wrapper table { border-collapse: collapse; box-shadow: 0 0 1px #fff; }' +
-        '.method-analyzer-wrapper td, .method-analyzer-wrapper th { border: 1px solid #ccc; padding: 5px; background: #fff; }' +
-        '.method-analyzer-wrapper th { padding: 5px 10px; font-weight: bold; text-align: center }' +
-        '.method-analyzer-wrapper .overview { text-align:left; overflow: hidden; }' +
-        '.method-analyzer-wrapper label { margin-right:5px; }' +
-        '.method-analyzer-wrapper .overview span { margin-left: 10px }' +
-        '.method-analyzer-wrapper .hl { background:#ffc;padding:2px 5px;border-radius:3px}' +
-        '.method-analyzer-wrapper .close-trigger { position: absolute; top: 5px; right: 5px; color: red }'
+        '.kratko-wrapper table { border-collapse: collapse; box-shadow: 0 0 1px #fff; }' +
+        '.kratko-wrapper td, .kratko-wrapper th { border: 1px solid #ccc; padding: 5px; background: #fff; }' +
+        '.kratko-wrapper th { padding: 5px 10px; font-weight: bold; text-align: center }' +
+        '.kratko-wrapper .overview { text-align:left; overflow: hidden; }' +
+        '.kratko-wrapper label { margin-right:5px; }' +
+        '.kratko-wrapper .overview span { margin-left: 10px }' +
+        '.kratko-wrapper .hl { background:#ffc;padding:2px 5px;border-radius:3px}' +
+        '.kratko-wrapper .close-trigger { position: absolute; top: 5px; right: 5px; color: red }'
       ));
       document.getElementsByTagName('head')[0].appendChild(styleEl);
     },
     
     buildWrapper: function() {
       this.wrapperEl = document.createElement('div');
-      this.wrapperEl.className = 'method-analyzer-wrapper';
+      this.wrapperEl.className = 'kratko-wrapper';
       
       this.tableEl = document.createElement('table');
       this.tbodyEl = document.createElement('tbody');
