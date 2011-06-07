@@ -24,7 +24,7 @@ TableViewer.prototype = {
                     'overflow-y: auto; color: #000; font-size: 13px }' +
     '.kratko-wrapper table { border-collapse: collapse; box-shadow: 0 0 1px #fff; }' +
     '.kratko-wrapper td, .kratko-wrapper th { border: 1px solid #ccc; padding: 5px; background: #fff; color: #000 }' +
-    '.kratko-wrapper th { padding: 5px 0 5px 10px; font-weight: bold; text-align: center }' +
+    '.kratko-wrapper th { padding: 5px 0 5px 10px; font-weight: bold; text-align: center; min-width: 140px }' +
     '.kratko-wrapper tr.selected td { background: #ffc }' +
     '.kratko-wrapper .overview { text-align:left; overflow: hidden; }' +
     '.kratko-wrapper .overview span { margin-left: 10px }' +
