@@ -75,9 +75,9 @@ TableViewer.prototype = {
     styleEl.appendChild(document.createTextNode(
       '.kratko-wrapper { position:absolute;z-index:100;top:10px;left:10px;background:#dedeff;' +
         'box-shadow:0px 0px 7px rgba(0,0,0,0.3);padding:10px;max-height:700px;' +
-        'font-family:Optima,sans-serif; text-align: left; line-height:1.5; border: 1px solid #aaa; overflow-y: auto }' +
+        'font-family:Optima,sans-serif; text-align: left; line-height:1.5; border: 1px solid #aaa; overflow-y: auto; color: #000; }' +
       '.kratko-wrapper table { border-collapse: collapse; box-shadow: 0 0 1px #fff; }' +
-      '.kratko-wrapper td, .kratko-wrapper th { border: 1px solid #ccc; padding: 5px; background: #fff; }' +
+      '.kratko-wrapper td, .kratko-wrapper th { border: 1px solid #ccc; padding: 5px; background: #fff; color: #000 }' +
       '.kratko-wrapper th { padding: 5px 10px; font-weight: bold; text-align: center }' +
       '.kratko-wrapper tr.selected td { background: #ffc }' +
       '.kratko-wrapper .overview { text-align:left; overflow: hidden; }' +
@@ -86,7 +86,7 @@ TableViewer.prototype = {
       '.kratko-wrapper .hl { background:#ffc;padding:2px 5px;border-radius:3px}' +
       '.kratko-wrapper .close-trigger { position: absolute; top: 0; right: 5px; color: red; text-decoration: none }' +
       '.kratko-preview { background: #fafaff; position: absolute; top: 38px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); z-index: 100 }' +
-      '.kratko-preview pre { margin: 0; padding: 10px; border: 1px solid #ccc; border-left: 0; display: inline-block; text-align: left }'
+      '.kratko-preview pre { margin: 0; padding: 10px; border: 1px solid #ccc; border-left: 0; display: inline-block; text-align: left; }'
     ));
     document.getElementsByTagName('head')[0].appendChild(styleEl);
   },
