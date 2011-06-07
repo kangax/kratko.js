@@ -33,6 +33,8 @@ TableViewer.prototype = {
     '.kratko-wrapper p { margin-bottom: 7px }' +
     '.kratko-wrapper .hl { background:#ffc;padding:2px 5px;border-radius:3px}' +
     '.kratko-wrapper .close-trigger { position: absolute; top: 0; right: 5px; color: red; text-decoration: none }' +
+    '.kratko-wrapper .sorter { margin-left: 10px; text-decoration: none; color: #ddd; font-weight: bold; padding: 5px }' +
+    '.kratko-wrapper .sorter.active { color: red }' +
     '.kratko-preview { background: #fafaff; position: absolute; top: 38px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); ' +
                       'z-index: 100; border-top-right-radius: 10px; border-bottom-right-radius: 10px; }' +
     '.kratko-preview pre { margin: 0; padding: 10px; display: inline-block; text-align: left; color: #000; font-size: 12px }'
@@ -125,20 +127,48 @@ TableViewer.prototype = {
 
     var headerNameEl = document.createElement('th');
     headerNameEl.appendChild(document.createTextNode('Method Name'));
+    headerNameEl.appendChild(this.makeSorterEl('name'));
     headerRowEl.appendChild(headerNameEl);
 
     var headerLengthEl = document.createElement('th');
     headerLengthEl.appendChild(document.createTextNode('Method Length'));
+    headerLengthEl.appendChild(this.makeSorterEl('methodLength', { active: true }));
     headerRowEl.appendChild(headerLengthEl);
 
     var headerArgsLengthEl = document.createElement('th');
     headerArgsLengthEl.appendChild(document.createTextNode('Arguments Length'));
+    headerArgsLengthEl.appendChild(this.makeSorterEl('argsLength'));
     headerRowEl.appendChild(headerArgsLengthEl);
     
     headEl.appendChild(headerRowEl);
     this.tableEl.appendChild(headEl);
     
     this.headEl = headEl;
+  },
+  
+  makeSorterEl: function(type, options) {
+    options = options || { };
+    
+    var sortEl = document.createElement('a');
+    var _this = this;
+    
+    sortEl.href = '#';
+    sortEl.className = 'sorter' + (options.active ? ' active' : '');
+    sortEl.innerHTML = '&darr;';
+    sortEl.onclick = function(){ return _this.onSorterClick(sortEl, type); };
+    return sortEl;
+  },
+  
+  onSorterClick: function(sortEl, type) {
+    var sorterEls = this.headEl.rows[0].getElementsByTagName('a');
+    for (var i = 0, len = sorterEls.length; i < len; i++) {
+      sorterEls[i].className = sorterEls[i].className.replace('active', '');
+    }
+    sortEl.className += (sortEl.className.indexOf('active') === -1 ? ' active' : '');
+    var isOrderDescending = sortEl.innerHTML.charCodeAt(0) === 8595;
+    this.sortTableBy(type, isOrderDescending ? 'asc' : 'desc');
+    sortEl.innerHTML = (isOrderDescending ? '&uarr;' : '&darr;');
+    return false;
   },
   
   buildTableBody: function() {
@@ -198,5 +228,35 @@ TableViewer.prototype = {
       _this.previewWrapperEl.style.display = '';
       return false;
     };
+  },
+  
+  sortTableBy: function(type, order) {
+    var fragment = document.createDocumentFragment();
+    var cellTexts = [ ];
+    var cellToSortByNum = type === 'name' ? 0 : type === 'methodLength' ? 1 : 2;
+    
+    for (var i = 1, rows = this.tableEl.rows, len = rows.length; i < len; i++) {
+      var cellToSortBy = rows[i].cells[cellToSortByNum];
+      
+      var cellText = cellToSortBy.firstChild.nodeName === 'A' 
+        ? cellToSortBy.firstChild.firstChild.nodeValue 
+        : cellToSortBy.firstChild.nodeValue;
+        
+      cellTexts.push([cellText, rows[i]]);
+    }
+    var sortFn = type === 'name'
+      ? function(a, b) { return a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0; }
+      : function(a, b) { return a[0] - b[0]; };
+    
+    cellTexts.sort(sortFn);
+    
+    if (order === 'desc') {
+      cellTexts.reverse();
+    }
+    
+    for (var i = 0, len = cellTexts.length; i < len; i++) {
+      fragment.appendChild(cellTexts[i][1]);
+    }
+    this.tbodyEl.appendChild(fragment);
   }
 };
