@@ -10,7 +10,7 @@ function TableViewer(stats) {
   this.buildTableHeader();
   this.buildTableBody();
   
-  this.wrapperEl.appendChild(this.tableEl);
+  this.wrapperEl.appendChild(this.tableWrapperEl);
   document.body.appendChild(this.wrapperEl);
   
   this.applyStyles();
@@ -19,7 +19,7 @@ function TableViewer(stats) {
 TableViewer.prototype = {
   styles: (
     '.kratko-wrapper { position:absolute;z-index:100;top:10px;left:10px;background:#dedeff;' +
-                    'box-shadow:0px 0px 7px rgba(0,0,0,0.3);padding:10px;max-height:700px;' +
+                    'box-shadow:0px 0px 7px rgba(0,0,0,0.3);padding:10px;' +
                     'font-family:Optima,sans-serif; text-align: left; line-height:1.5; border: 1px solid #aaa; ' +
                     'overflow-y: auto; color: #000; font-size: 13px }' +
     '.kratko-wrapper table { border-collapse: collapse; box-shadow: 0 0 1px #fff; }' +
@@ -35,6 +35,7 @@ TableViewer.prototype = {
     '.kratko-wrapper .close-trigger { position: absolute; top: 0; right: 5px; color: red; text-decoration: none }' +
     '.kratko-wrapper .sorter { margin-left: 10px; text-decoration: none; color: #ddd; font-weight: bold; padding: 5px }' +
     '.kratko-wrapper .sorter.active { color: red }' +
+    '.kratko-wrapper .table-wrapper { max-height: 331px; overflow-y: scroll }' +
     '.kratko-preview { background: #fafaff; position: absolute; top: 38px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); ' +
                       'z-index: 100; border-top-right-radius: 10px; border-bottom-right-radius: 10px; }' +
     '.kratko-preview pre { margin: 0; padding: 10px; display: inline-block; text-align: left; color: #000; font-size: 12px }'
@@ -50,10 +51,14 @@ TableViewer.prototype = {
     this.wrapperEl = document.createElement('div');
     this.wrapperEl.className = 'kratko-wrapper';
     
+    this.tableWrapperEl = document.createElement('div');
+    this.tableWrapperEl.className = 'table-wrapper';
+    
     this.tableEl = document.createElement('table');
     this.tbodyEl = document.createElement('tbody');
     
     this.tableEl.appendChild(this.tbodyEl);
+    this.tableWrapperEl.appendChild(this.tableEl);
   },
   
   buildSwitch: function() {
