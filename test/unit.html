@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/git/qunit.css" type="text/css" media="screen">
+    <script src="http://code.jquery.com/qunit/git/qunit.js"></script>
+    <script src="../dist/kratko.js"></script>
+  </head>
+  <body>
+    <h1 id="qunit-header">kratko.js unit tests</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <script>
+      function makeTestObject() {
+        return {
+          foo: function() { 
+            // foo bar baz
+            return 1;
+          },
+          bar: function baz(x, y, z) {
+            alert(1);
+            
+            alert(2);
+            
+            // foo
+            
+            alert(3)
+          }
+        };
+      }
+      
+      test('Kratko exists', function() {
+        ok(Kratko);
+        ok(Kratko.getStatsFor);
+      });
+      
+      test('getStatsFor return value', function() {
+        var testObject = makeTestObject();
+        var statsObject = Kratko.getStatsFor(testObject);
+        equals('object', typeof statsObject);
+      });
+      
+      test('getStatsFor stat values', function() {
+        var statsObject = Kratko.getStatsFor(makeTestObject());
+        
+        equals(4, statsObject.totalMethodLength);
+        equals(1, statsObject.minMethodLength);
+        equals(3, statsObject.maxMethodLength);
+        equals(2, statsObject.averageMethodLength);
+        equals(2, statsObject.medianMethodLength);
+        
+        equals(3, statsObject.totalArgsLength);
+        equals(0, statsObject.minArgsLength);
+        equals(3, statsObject.maxArgsLength);
+        equals(1.5, statsObject.averageArgsLength);
+        equals(1.5, statsObject.medianArgsLength);
+        
+        equals(2, statsObject.numMethods);
+      });
+      
+      test('getStatsFor methods', function() {
+        var statsObject = Kratko.getStatsFor(makeTestObject());
+        
+        equals('object', typeof statsObject.methods);
+        
+        equals(1, statsObject.methods.foo.length);
+        equals(0, statsObject.methods.foo.argsLength);
+        equals("function () { \n            // foo bar baz\n            return 1;\n          }", statsObject.methods.foo.methodString);
+        
+        equals(3, statsObject.methods.bar.length);
+        equals(3, statsObject.methods.bar.argsLength);
+        equals('function baz(x, y, z) {\n            alert(1);\n            \n            alert(2);\n            \n            // foo\n            \n            alert(3)\n          }', statsObject.methods.bar.methodString);
+        
+      })
+    </script>
+  </body>
+</html>

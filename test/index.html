@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="../dist/kratko.js"></script>
+  </head>
+  <body>
+    <script>
+      var p = TableViewer.prototype;
+      var objectName = window.prompt('Which object to inspect?', 'p');
+      if (objectName) {
+        var tableViewer = new TableViewer(Kratko.getStatsFor(eval(objectName)));
+      }
+    </script>
+  </body>
+</html>
