@@ -26,12 +26,13 @@ TableViewer.prototype = {
     '.kratko-wrapper td, .kratko-wrapper th { border: 1px solid #ccc; padding: 5px; background: #fff; color: #000 }' +
     '.kratko-wrapper th { padding: 5px 0 5px 10px; font-weight: bold; text-align: center; min-width: 140px }' +
     '.kratko-wrapper tr.selected td { background: #ffc }' +
+    '.kratko-wrapper input { width: 200px }' +
     '.kratko-wrapper .overview { text-align:left; overflow: hidden; }' +
     '.kratko-wrapper .overview span { margin-left: 10px }' +
-    '.kratko-wrapper label { margin-right:5px; }' +
+    '.kratko-wrapper label { margin-right: 5px; }' +
     '.kratko-wrapper a { color: blue }' +
     '.kratko-wrapper p { margin-bottom: 7px }' +
-    '.kratko-wrapper .hl { background:#ffc;padding:2px 5px;border-radius:3px}' +
+    '.kratko-wrapper .hl { background: #ffc; padding: 2px 5px; border-radius: 3px }' +
     '.kratko-wrapper .close-trigger { position: absolute; top: 0; right: 5px; color: red; text-decoration: none }' +
     '.kratko-wrapper .sorter { margin-left: 10px; text-decoration: none; color: #ddd; font-weight: bold; padding: 5px }' +
     '.kratko-wrapper .sorter.active { color: red }' +
