@@ -71,8 +71,26 @@
         equals(3, statsObject.methods.bar.length);
         equals(3, statsObject.methods.bar.argsLength);
         equals('function baz(x, y, z) {\n            alert(1);\n            \n            alert(2);\n            \n            // foo\n            \n            alert(3)\n          }', statsObject.methods.bar.methodString);
+      });
+      
+      test('getStatsFor multiline comment', function() {
+        var statsObject = Kratko.getStatsFor({ 
+          foo: function(){
+            /**
+             * @method foo
+             */
+             if (foo) {
+               alert(1);
+               // boo
+             }
+             
+             /* and another comment */
+             return 23;
+          }
+        });
         
-      })
+        equals(4, statsObject.methods.foo.length);
+      });
     </script>
   </body>
 </html>

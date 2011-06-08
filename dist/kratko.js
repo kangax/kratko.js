@@ -11,10 +11,14 @@ Method.prototype = {
   },
 
   getLines: function() {
-    var lines = String(this.method).split('\n');
+
+    var methodStr = String(this.method);
+    methodStr = methodStr.replace(/\/\*[\s\S]*?\*\//g, '');
+
+    var lines = methodStr.split('\n');
 
     lines = this._stripHead(lines);
-    lines = this._stripEmptyAndComments(lines);
+    lines = this._stripEmptyAndSingleComments(lines);
 
     return lines;
   },
@@ -29,7 +33,7 @@ Method.prototype = {
     return lines;
   },
 
-  _stripEmptyAndComments: function(lines) {
+  _stripEmptyAndSingleComments: function(lines) {
     for (var i = lines.length; i--; ) {
       if (/^\s*(\/\/.*)?$/.test(lines[i])) {
         lines.splice(i, 1);
