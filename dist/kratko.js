@@ -120,7 +120,7 @@ TableViewer.prototype = {
 
   buildSwitch: function() {
     var switchEl = document.createElement('p');
-    switchEl.innerHTML = '<form><label>Global object "name"</label><input><button type="button">Analyze</button></form>';
+    switchEl.innerHTML = '<form><label>Object to inspect:</label><input placeholder="e.g. fabric.Element"><button type="button">Analyze</button></form>';
     this.wrapperEl.appendChild(switchEl);
 
     var wrapperEl = this.wrapperEl, previewWrapperEl = this.previewWrapperEl;
