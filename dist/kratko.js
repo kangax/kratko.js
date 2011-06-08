@@ -92,7 +92,7 @@ TableViewer.prototype = {
     '.kratko-wrapper .close-trigger { position: absolute; top: 0; right: 5px; color: red; text-decoration: none }' +
     '.kratko-wrapper .sorter { margin-left: 10px; text-decoration: none; color: #ddd; font-weight: bold; padding: 5px }' +
     '.kratko-wrapper .sorter.active { color: red }' +
-    '.kratko-wrapper .table-wrapper { max-height: 331px; overflow-y: scroll }' +
+    '.kratko-wrapper .table-wrapper { max-height: 531px; overflow-y: scroll }' +
     '.kratko-preview { background: #fafaff; position: absolute; top: 38px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); ' +
                       'z-index: 100; border-top-right-radius: 10px; border-bottom-right-radius: 10px; }' +
     '.kratko-preview pre { margin: 0; padding: 10px; display: inline-block; text-align: left; color: #000; font-size: 12px }'
