@@ -63,6 +63,7 @@ function TableViewer(stats) {
   this.buildSwitch();
   this.buildCloseEl();
   this.buildOverview();
+  this.buildShim();
   this.buildTableHeader();
   this.buildTableBody();
 
@@ -95,7 +96,8 @@ TableViewer.prototype = {
     '.kratko-wrapper .table-wrapper { max-height: 531px; overflow-y: scroll }' +
     '.kratko-preview { background: #fafaff; position: fixed; top: 38px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); ' +
                       'z-index: 100; border-top-right-radius: 10px; border-bottom-right-radius: 10px; }' +
-    '.kratko-preview pre { margin: 0; padding: 10px; display: inline-block; text-align: left; color: #000; font-size: 12px; font-family: "Courier New", Courier, monospace; }'
+    '.kratko-preview pre { margin: 0; padding: 10px; display: inline-block; text-align: left; color: #000; font-size: 12px; font-family: "Courier New", Courier, monospace; }' +
+    '.kratko-shim { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 99 }'
   ),
 
   applyStyles: function() {
@@ -123,13 +125,17 @@ TableViewer.prototype = {
     switchEl.innerHTML = '<form><label>Object to inspect:</label><input placeholder="e.g. fabric.Element"><button type="button">Analyze</button></form>';
     this.wrapperEl.appendChild(switchEl);
 
-    var wrapperEl = this.wrapperEl, previewWrapperEl = this.previewWrapperEl;
+    var wrapperEl = this.wrapperEl,
+        previewWrapperEl = this.previewWrapperEl,
+        shimEl = this.shimEl;
+
     switchEl.childNodes[0].onsubmit = function() {
       var methodName = switchEl.childNodes[0].elements[0].value;
 
       if (methodName) {
         document.body.removeChild(wrapperEl);
         document.body.removeChild(previewWrapperEl);
+        document.body.removeChild(shimEl);
         new TableViewer(Kratko.getStatsFor(eval(methodName)));
       }
       return false;
@@ -147,6 +153,7 @@ TableViewer.prototype = {
     closeEl.onclick = function() {
       document.body.removeChild(_this.wrapperEl);
       document.body.removeChild(_this.previewWrapperEl);
+      document.body.removeChild(_this.shimEl);
       return false;
     };
   },
@@ -170,6 +177,12 @@ TableViewer.prototype = {
     );
 
     this.wrapperEl.appendChild(overviewEl);
+  },
+
+  buildShim: function() {
+    this.shimEl = document.createElement('div');
+    this.shimEl.className = 'kratko-shim';
+    document.body.appendChild(this.shimEl);
   },
 
   buildPreview: function() {
