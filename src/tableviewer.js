@@ -20,7 +20,7 @@ TableViewer.prototype = {
   styles: (
     '.kratko-wrapper { position:absolute;z-index:100;top:10px;left:10px;background:#dedeff;' +
                     'box-shadow:0px 0px 7px rgba(0,0,0,0.3);padding:10px;' +
-                    'font-family:Optima,sans-serif; text-align: left; line-height:1.5; border: 1px solid #aaa; ' +
+                    'font-family:Helvetica, arial, sans-serif; text-align: left; line-height:1.5; border: 1px solid #aaa; ' +
                     'overflow-y: auto; color: #000; font-size: 13px }' +
     '.kratko-wrapper table { border-collapse: collapse; box-shadow: 0 0 1px #fff; }' +
     '.kratko-wrapper td, .kratko-wrapper th { border: 1px solid #ccc; padding: 5px; background: #fff; color: #000 }' +
