@@ -18,7 +18,7 @@ function TableViewer(stats) {
 
 TableViewer.prototype = {
   styles: (
-    '.kratko-wrapper { position:absolute;z-index:100;top:10px;left:10px;background:#dedeff;' +
+    '.kratko-wrapper { position:fixed;z-index:100;top:10px;left:10px;background:#dedeff;' +
                     'box-shadow:0px 0px 7px rgba(0,0,0,0.3);padding:10px;' +
                     'font-family:Helvetica, arial, sans-serif; text-align: left; line-height:1.5; border: 1px solid #aaa; ' +
                     'overflow-y: auto; color: #000; font-size: 13px }' +
@@ -37,9 +37,9 @@ TableViewer.prototype = {
     '.kratko-wrapper .sorter { margin-left: 10px; text-decoration: none; color: #ddd; font-weight: bold; padding: 5px }' +
     '.kratko-wrapper .sorter.active { color: red }' +
     '.kratko-wrapper .table-wrapper { max-height: 531px; overflow-y: scroll }' +
-    '.kratko-preview { background: #fafaff; position: absolute; top: 38px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); ' +
+    '.kratko-preview { background: #fafaff; position: fixed; top: 38px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); ' +
                       'z-index: 100; border-top-right-radius: 10px; border-bottom-right-radius: 10px; }' +
-    '.kratko-preview pre { margin: 0; padding: 10px; display: inline-block; text-align: left; color: #000; font-size: 12px }'
+    '.kratko-preview pre { margin: 0; padding: 10px; display: inline-block; text-align: left; color: #000; font-size: 12px; font-family: "Courier New", Courier, monospace; }'
   ),
   
   applyStyles: function() {
