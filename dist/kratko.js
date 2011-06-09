@@ -280,6 +280,7 @@ TableViewer.prototype = {
     var _this = this;
     linkEl.onclick = function() {
       _this.graphEl.style.display = (_this.graphEl.style.display === 'none' ? '' : 'none');
+      return false;
     };
 
     formEl.appendChild(linkEl);
