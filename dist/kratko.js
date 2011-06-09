@@ -86,6 +86,7 @@ TableViewer.prototype = {
     '.kratko-wrapper th { padding: 5px 0 5px 10px; font-weight: bold; text-align: center; min-width: 140px }' +
     '.kratko-wrapper tr.selected td { background: #ffc }' +
     '.kratko-wrapper input { width: 200px }' +
+    '.kratko-wrapper form a { margin-left: 10px }' +
     '.kratko-wrapper .overview { text-align:left; overflow: hidden; }' +
     '.kratko-wrapper .overview span { margin-left: 10px }' +
     '.kratko-wrapper label { margin-right: 5px; }' +
@@ -139,17 +140,18 @@ TableViewer.prototype = {
         previewWrapperEl = this.previewWrapperEl,
         shimEl = this.shimEl;
 
-    switchEl.childNodes[0].onsubmit = function() {
-      var methodName = switchEl.childNodes[0].elements[0].value;
+    switchEl.childNodes[0].onsubmit = function(){ return this.onChangeObject(switchEl) };
+  },
 
-      if (methodName) {
-        document.body.removeChild(wrapperEl);
-        document.body.removeChild(previewWrapperEl);
-        document.body.removeChild(shimEl);
-        new TableViewer(Kratko.getStatsFor(eval(methodName)));
-      }
-      return false;
-    };
+  onChangeObject: function(switchEl) {
+    var methodName = switchEl.childNodes[0].elements[0].value;
+
+    if (methodName) {
+      this.cleanup();
+      new TableViewer(Kratko.getStatsFor(eval(methodName)));
+    }
+
+    return false;
   },
 
   buildCloseEl: function() {
@@ -161,9 +163,7 @@ TableViewer.prototype = {
 
     var _this = this;
     closeEl.onclick = function() {
-      document.body.removeChild(_this.wrapperEl);
-      document.body.removeChild(_this.previewWrapperEl);
-      document.body.removeChild(_this.shimEl);
+      _this.cleanup();
       return false;
     };
   },
@@ -257,15 +257,32 @@ TableViewer.prototype = {
   },
 
   buildGraph: function() {
-    var graphEl = document.createElement('div');
-    graphEl.className = 'kratko-graph';
+    this.graphEl = document.createElement('div');
+    this.graphEl.style.display = 'none';
+    this.graphEl.className = 'kratko-graph';
 
-    graphEl.innerHTML = '<div class="sectors"></div><div class="axis"></div>';
+    this.graphEl.innerHTML = '<div class="sectors"></div><div class="axis"></div>';
 
-    this.buildSectors(graphEl);
-    this.buildAxis(graphEl);
+    this.buildSectors(this.graphEl);
+    this.buildAxis(this.graphEl);
+    this.buildGraphTrigger();
 
-    document.body.appendChild(graphEl);
+    document.body.appendChild(this.graphEl);
+  },
+
+  buildGraphTrigger: function() {
+    var formEl = this.wrapperEl.getElementsByTagName('form')[0];
+    var linkEl = document.createElement('a');
+
+    linkEl.href = '#';
+    linkEl.innerHTML = 'Toggle graph';
+
+    var _this = this;
+    linkEl.onclick = function() {
+      _this.graphEl.style.display = (_this.graphEl.style.display === 'none' ? '' : 'none');
+    };
+
+    formEl.appendChild(linkEl);
   },
 
   buildSectors: function(graphEl) {
@@ -391,6 +408,13 @@ TableViewer.prototype = {
       fragment.appendChild(cellTexts[i][1]);
     }
     this.tbodyEl.appendChild(fragment);
+  },
+
+  cleanup: function() {
+    document.body.removeChild(this.wrapperEl);
+    document.body.removeChild(this.previewWrapperEl);
+    document.body.removeChild(this.shimEl);
+    document.body.removeChild(this.graphEl);
   }
 };
 function Kratko(object) {
