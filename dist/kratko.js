@@ -102,9 +102,9 @@ TableViewer.prototype = {
                           'font-family: Courier, monospace; max-height: 675px; overflow-y: auto; overflow-x: hidden; padding-right: 20px; }' +
     '.kratko-shim { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 99 }' +
     '.kratko-graph { position: fixed; top: 10px; right: 10px; z-index: 100; background: #fff; padding: 5px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); }' +
-    '.kratko-graph .block { display: inline-block; width: 16px; background: red; height: 100px; margin-right: 1px }' +
+    '.kratko-graph .block { display: inline-block; width: 12px; background: red; height: 100px; margin-right: 1px }' +
     '.kratko-graph .axis { border-top: 1px solid #ddd }' +
-    '.kratko-graph .axis span { display: inline-block; width: 16px; border-right: 1px solid #ccc; background: #fff; '+
+    '.kratko-graph .axis span { display: inline-block; width: 12px; border-right: 1px solid #ccc; background: #fff; '+
                                 'text-align: center; font-family: Courier, monospace; font-size: 9px; '+
                                 'vertical-align: top; padding-top: 4px }' +
     '.kratko-graph .axis span:last-child { border: 0 }'
