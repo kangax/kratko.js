@@ -77,9 +77,9 @@ function TableViewer(stats) {
 
 TableViewer.prototype = {
   styles: (
-    '.kratko-wrapper { position:fixed;z-index:100;top:10px;left:10px;background:#dedeff;' +
-                    'box-shadow:0px 0px 7px rgba(0,0,0,0.3);padding:10px;' +
-                    'font-family:Helvetica, arial, sans-serif; text-align: left; line-height:1.5; border: 1px solid #aaa; ' +
+    '.kratko-wrapper { position: fixed; z-index: 100; top: 10px; left: 10px; background: #dedeff;' +
+                    'box-shadow: 0px 0px 7px rgba(0,0,0,0.3); padding: 10px;' +
+                    'font-family: Helvetica, arial, sans-serif; text-align: left; line-height: 1.5; border: 1px solid #aaa; ' +
                     'overflow-y: auto; color: #000; font-size: 13px }' +
     '.kratko-wrapper table { border-collapse: collapse; box-shadow: 0 0 1px #fff; }' +
     '.kratko-wrapper td, .kratko-wrapper th { border: 1px solid #ccc; padding: 5px; background: #fff; color: #000 }' +
@@ -101,7 +101,7 @@ TableViewer.prototype = {
     '.kratko-preview pre { margin: 0; display: inline-block; text-align: left; color: #000; font-size: 12px; margin: 10px 10px 10px 5px;' +
                           'font-family: Courier, monospace; max-height: 675px; overflow-y: auto; overflow-x: hidden; padding-right: 20px; }' +
     '.kratko-shim { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 99 }' +
-    '.kratko-graph { position: fixed; top: 10px; right: 10px; z-index: 100; background: #fff; padding: 5px }' +
+    '.kratko-graph { position: fixed; top: 10px; right: 10px; z-index: 100; background: #fff; padding: 5px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); }' +
     '.kratko-graph .block { display: inline-block; width: 16px; background: red; height: 100px; margin-right: 1px }' +
     '.kratko-graph .axis { border-top: 1px solid #ddd }' +
     '.kratko-graph .axis span { display: inline-block; width: 16px; border-right: 1px solid #ccc; background: #fff; '+
@@ -269,7 +269,7 @@ TableViewer.prototype = {
   },
 
   buildSectors: function(graphEl) {
-    var sectorsMarkup = '', scale = 20;
+    var sectorsMarkup = '', scale = 10;
 
     for (var i = 0, len = this.stats.maxMethodLength; i <= len; i++) {
       var sectorHeight = ((i in this.methodLengthsData) ? this.methodLengthsData[i] : '0');
