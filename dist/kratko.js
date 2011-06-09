@@ -138,9 +138,12 @@ TableViewer.prototype = {
 
     var wrapperEl = this.wrapperEl,
         previewWrapperEl = this.previewWrapperEl,
-        shimEl = this.shimEl;
+        shimEl = this.shimEl,
+        _this = this;
 
-    switchEl.childNodes[0].onsubmit = function(){ return this.onChangeObject(switchEl) };
+    switchEl.childNodes[0].onsubmit = function(){
+      return _this.onChangeObject(switchEl);
+    };
   },
 
   onChangeObject: function(switchEl) {
