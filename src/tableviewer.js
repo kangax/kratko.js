@@ -213,7 +213,7 @@ TableViewer.prototype = {
   },
   
   buildSectors: function(graphEl) {
-    var sectorsMarkup = '', scale = 20;
+    var sectorsMarkup = '', scale = 10;
     
     for (var i = 0, len = this.stats.maxMethodLength; i <= len; i++) {
       var sectorHeight = ((i in this.methodLengthsData) ? this.methodLengthsData[i] : '0');
