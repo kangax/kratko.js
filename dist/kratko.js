@@ -57,6 +57,7 @@ Method.prototype = {
 function TableViewer(stats) {
 
   this.stats = stats;
+  this.methodLengthsData = this.getMethodLengthsData();
 
   this.buildWrapper();
   this.buildPreview();
@@ -66,6 +67,7 @@ function TableViewer(stats) {
   this.buildShim();
   this.buildTableHeader();
   this.buildTableBody();
+  this.buildGraph();
 
   this.wrapperEl.appendChild(this.tableWrapperEl);
   document.body.appendChild(this.wrapperEl);
@@ -98,7 +100,14 @@ TableViewer.prototype = {
                       'z-index: 100; border-top-right-radius: 10px; border-bottom-right-radius: 10px; }' +
     '.kratko-preview pre { margin: 0; display: inline-block; text-align: left; color: #000; font-size: 12px; margin: 10px 10px 10px 5px;' +
                           'font-family: Courier, monospace; max-height: 675px; overflow-y: auto; overflow-x: hidden; padding-right: 20px; }' +
-    '.kratko-shim { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 99 }'
+    '.kratko-shim { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 99 }' +
+    '.kratko-graph { position: fixed; top: 10px; right: 10px; z-index: 100; background: #fff; padding: 5px }' +
+    '.kratko-graph .block { display: inline-block; width: 16px; background: red; height: 100px; margin-right: 1px }' +
+    '.kratko-graph .axis { border-top: 1px solid #ddd }' +
+    '.kratko-graph .axis span { display: inline-block; width: 16px; border-right: 1px solid #ccc; background: #fff; '+
+                                'text-align: center; font-family: Courier, monospace; font-size: 9px; '+
+                                'vertical-align: top; padding-top: 4px }' +
+    '.kratko-graph .axis span:last-child { border: 0 }'
   ),
 
   applyStyles: function() {
@@ -245,6 +254,54 @@ TableViewer.prototype = {
     this.sortTableBy(type, isOrderDescending ? 'asc' : 'desc');
     sortEl.innerHTML = (isOrderDescending ? '&uarr;' : '&darr;');
     return false;
+  },
+
+  buildGraph: function() {
+    var graphEl = document.createElement('div');
+    graphEl.className = 'kratko-graph';
+
+    graphEl.innerHTML = '<div class="sectors"></div><div class="axis"></div>';
+
+    this.buildSectors(graphEl);
+    this.buildAxis(graphEl);
+
+    document.body.appendChild(graphEl);
+  },
+
+  buildSectors: function(graphEl) {
+    var sectorsMarkup = '', scale = 20;
+
+    for (var i = 0, len = this.stats.maxMethodLength; i <= len; i++) {
+      var sectorHeight = ((i in this.methodLengthsData) ? this.methodLengthsData[i] : '0');
+      sectorsMarkup += '<div class="block" style="height: ' + (sectorHeight * scale) + 'px"></div>';
+    }
+
+    graphEl.firstChild.innerHTML = sectorsMarkup;
+  },
+
+  buildAxis: function(graphEl) {
+    var axisMarkup = '';
+    for (var i = 0, len = this.stats.maxMethodLength; i <= len; i++) {
+      axisMarkup += '<span>' + i + '</span>';
+    }
+    graphEl.childNodes[1].innerHTML = axisMarkup;
+  },
+
+  getMethodLengthsData: function() {
+    var methodLengthsData = { };
+
+    for (var methodName in this.stats.methods) {
+
+      var methodLength = this.stats.methods[methodName].length;
+      if (methodLength in methodLengthsData) {
+        methodLengthsData[methodLength]++;
+      }
+      else {
+        methodLengthsData[methodLength] = 1;
+      }
+    }
+
+    return methodLengthsData;
   },
 
   buildTableBody: function() {
