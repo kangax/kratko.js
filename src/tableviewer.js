@@ -236,7 +236,7 @@ TableViewer.prototype = {
   buildSectors: function(graphEl) {
     var sectorsMarkup = '', scale = 10;
     
-    for (var i = 0, len = /*this.stats.maxMethodLength*/ 100; i <= len; i++) {
+    for (var i = 0, len = Math.min(this.stats.maxMethodLength, 100); i <= len; i++) {
       var sectorHeight = ((i in this.methodLengthsData) ? this.methodLengthsData[i] : '0');
       sectorsMarkup += '<div class="block" style="height: ' + (sectorHeight * scale) + 'px"></div>';
     }
@@ -246,7 +246,7 @@ TableViewer.prototype = {
   
   buildAxis: function(graphEl) {
     var axisMarkup = '';
-    for (var i = 0, len = /*this.stats.maxMethodLength*/ 100; i <= len; i++) {
+    for (var i = 0, len = Math.min(this.stats.maxMethodLength, 100); i <= len; i++) {
       axisMarkup += '<span>' + i + '</span>';
     }
     graphEl.childNodes[1].innerHTML = axisMarkup;
