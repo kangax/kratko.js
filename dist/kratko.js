@@ -108,8 +108,8 @@ TableViewer.prototype = {
 
     '.kratko-shim { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 99 }' +
 
-    '.kratko-graph { position: fixed; top: 10px; right: 10px; z-index: 101;
-                    background: #fff; padding: 5px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); }' +
+    '.kratko-graph { position: fixed; top: 10px; right: 10px; z-index: 101;' +
+                    'background: #fff; padding: 5px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); }' +
 
     '.kratko-graph .block { display: inline-block; width: 12px; background: red; height: 100px; margin-right: 1px }' +
     '.kratko-graph .axis { border-top: 1px solid #ddd }' +
