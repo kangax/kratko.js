@@ -82,6 +82,7 @@ TableViewer.prototype = {
                     'box-shadow: 0px 0px 7px rgba(0,0,0,0.3); padding: 10px;' +
                     'font-family: Helvetica, arial, sans-serif; text-align: left; line-height: 1.5; border: 1px solid #aaa; ' +
                     'overflow-y: auto; color: #000; font-size: 13px }' +
+
     '.kratko-wrapper table { border-collapse: collapse; box-shadow: 0 0 1px #fff; }' +
     '.kratko-wrapper td, .kratko-wrapper th { border: 1px solid #ccc; padding: 5px; background: #fff; color: #000 }' +
     '.kratko-wrapper th { padding: 5px 0 5px 10px; font-weight: bold; text-align: center; min-width: 140px }' +
@@ -98,19 +99,28 @@ TableViewer.prototype = {
     '.kratko-wrapper .sorter { margin-left: 10px; text-decoration: none; color: #ddd; font-weight: bold; padding: 5px }' +
     '.kratko-wrapper .sorter.active { color: red }' +
     '.kratko-wrapper .table-wrapper { max-height: 531px; overflow-y: scroll }' +
+
     '.kratko-preview { background: #fafaff; position: fixed; top: 38px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); ' +
                       'z-index: 100; border-top-right-radius: 10px; border-bottom-right-radius: 10px; }' +
+
     '.kratko-preview pre { margin: 0; display: inline-block; text-align: left; color: #000; font-size: 12px; margin: 10px 10px 10px 5px;' +
                           'font-family: Courier, monospace; max-height: 675px; overflow-y: auto; overflow-x: hidden; padding-right: 20px; }' +
+
     '.kratko-shim { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 99 }' +
-    '.kratko-graph { position: fixed; top: 10px; right: 10px; z-index: 101; background: #fff; padding: 5px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); }' +
+
+    '.kratko-graph { position: fixed; top: 10px; right: 10px; z-index: 101;
+                    background: #fff; padding: 5px; box-shadow: 0px 0px 7px rgba(0,0,0,0.3); }' +
+
     '.kratko-graph .block { display: inline-block; width: 12px; background: red; height: 100px; margin-right: 1px }' +
     '.kratko-graph .axis { border-top: 1px solid #ddd }' +
     '.kratko-graph .axis span { display: inline-block; width: 12px; border-right: 1px solid #ccc; background: #fff; '+
                                 'text-align: center; font-family: Courier, monospace; font-size: 9px; '+
                                 'vertical-align: top; padding-top: 4px }' +
+
     '.kratko-graph .axis span:last-child { border: 0 }' +
-    '.kratko-header { background: #888; color: #fff; margin-left: -8px; margin-top: -8px; margin-right: -8px; padding: 2px 5px; font-size: 12px; }' +
+    '.kratko-header { background: #888; color: #fff; margin-left: -8px; margin-top: -8px; '+
+                      'margin-right: -8px; padding: 2px 5px; font-size: 12px; margin-bottom: 5px }' +
+
     '.kratko-header span { font-style: italic; font-size: 11px; margin-left: 5px; color: #ccc }'
   ),
 
