@@ -246,7 +246,7 @@ TableViewer.prototype = {
     
     for (var i = 0, len = Math.min(this.stats.maxMethodLength, 100); i <= len; i++) {
       var sectorHeight = ((i in this.methodLengthsData) ? this.methodLengthsData[i] : '0');
-      sectorsMarkup += '<div class="block" style="height: ' + (sectorHeight * scale) + 'px"></div>';
+      sectorsMarkup += '<div class="block" style="height: ' + Math.ceil(sectorHeight * scale) + 'px"></div>';
     }
     
     graphEl.firstChild.innerHTML = sectorsMarkup;
