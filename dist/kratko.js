@@ -298,7 +298,7 @@ TableViewer.prototype = {
   },
 
   buildSectors: function(graphEl) {
-    var sectorsMarkup = '', scale = 100 / this.maxNumOfSameLengthMethods;
+    var sectorsMarkup = '', scale = 150 / this.maxNumOfSameLengthMethods;
 
     for (var i = 0, len = Math.min(this.stats.maxMethodLength, 100); i <= len; i++) {
       var sectorHeight = ((i in this.methodLengthsData) ? this.methodLengthsData[i] : '0');
