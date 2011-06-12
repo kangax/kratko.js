@@ -2,6 +2,7 @@ function TableViewer(stats) {
   
   this.stats = stats;
   this.methodLengthsData = this.getMethodLengthsData();
+  this.maxNumOfSameLengthMethods = this.getMaxNumOfSameLengthMethods();
   
   this.buildWrapper();
   this.buildPreview();
@@ -241,7 +242,7 @@ TableViewer.prototype = {
   },
   
   buildSectors: function(graphEl) {
-    var sectorsMarkup = '', scale = 10;
+    var sectorsMarkup = '', scale = 100 / this.maxNumOfSameLengthMethods;
     
     for (var i = 0, len = Math.min(this.stats.maxMethodLength, 100); i <= len; i++) {
       var sectorHeight = ((i in this.methodLengthsData) ? this.methodLengthsData[i] : '0');
@@ -274,6 +275,16 @@ TableViewer.prototype = {
     }
     
     return methodLengthsData;
+  },
+  
+  getMaxNumOfSameLengthMethods: function() {
+    var max = 0;
+    for (var prop in this.methodLengthsData) {
+      if (this.methodLengthsData[prop] > max) {
+        max = this.methodLengthsData[prop];
+      }
+    }
+    return max;
   },
   
   buildTableBody: function() {
