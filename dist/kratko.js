@@ -93,7 +93,7 @@ TableViewer.prototype = {
     '.kratko-wrapper a { color: blue }' +
     '.kratko-wrapper p { margin-bottom: 7px }' +
     '.kratko-wrapper .hl { background: #ffc; padding: 2px 5px; border-radius: 3px }' +
-    '.kratko-wrapper .close-trigger { position: absolute; top: 0; right: 5px; color: red; text-decoration: none }' +
+    '.kratko-wrapper .close-trigger { position: absolute; top: 3px; right: 8px; color: #fcc; text-decoration: none; font-weight: bold; }' +
     '.kratko-wrapper .sorter { margin-left: 10px; text-decoration: none; color: #ddd; font-weight: bold; padding: 5px }' +
     '.kratko-wrapper .sorter.active { color: red }' +
     '.kratko-wrapper .table-wrapper { max-height: 531px; overflow-y: scroll }' +
@@ -108,7 +108,9 @@ TableViewer.prototype = {
     '.kratko-graph .axis span { display: inline-block; width: 12px; border-right: 1px solid #ccc; background: #fff; '+
                                 'text-align: center; font-family: Courier, monospace; font-size: 9px; '+
                                 'vertical-align: top; padding-top: 4px }' +
-    '.kratko-graph .axis span:last-child { border: 0 }'
+    '.kratko-graph .axis span:last-child { border: 0 }' +
+    '.kratko-header { background: #888; color: #fff; margin-left: -8px; margin-top: -8px; margin-right: -8px; padding: 2px 5px; font-size: 12px; }' +
+    '.kratko-header span { font-style: italic; font-size: 11px; margin-left: 5px; color: #ccc }'
   ),
 
   applyStyles: function() {
@@ -120,6 +122,11 @@ TableViewer.prototype = {
   buildWrapper: function() {
     this.wrapperEl = document.createElement('div');
     this.wrapperEl.className = 'kratko-wrapper';
+
+    this.headerEl = document.createElement('div');
+    this.headerEl.className = 'kratko-header';
+    this.headerEl.innerHTML = 'kratko.js <span>ver. 0.1</span>';
+    this.wrapperEl.appendChild(this.headerEl);
 
     this.tableWrapperEl = document.createElement('div');
     this.tableWrapperEl.className = 'table-wrapper';
