@@ -1,3 +1,5 @@
+<img src="http://dl.dropbox.com/u/822184/kratko_screenshot_1.png">
+
 ## What is this?
 
 kratko.js helps you refactor Javascript. It takes an object and collects information about it. It lets you see which objects have too many methods, which methods do too many things, and accept too many arguments.
