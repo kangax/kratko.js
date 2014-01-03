@@ -74,3 +74,6 @@ Here's an output returned by `Kratko.getStatsFor`:
       
       numMethods: 2
     }
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kangax/kratko.js/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
