@@ -6,7 +6,7 @@ kratko.js helps you refactor Javascript. It takes an object and collects informa
 
 ## How do I use it?
 
-kratko.js defines 2 global objects — `Kratko` and `TableViewer`. `Kratko` is used for getting stats of an object — lengths of methods, lengths of method arguments, as well their average, minumum and maximum values. `TableViewer` provides simple UI to view those stats via HTML table.
+kratko.js defines 2 global objects — `Kratko` and `TableViewer`. `Kratko` is used for getting stats of an object — lengths of methods, lengths of method arguments, as well their average, minimum and maximum values. `TableViewer` provides simple UI to view those stats via HTML table.
 
 ## Which stats do I get?
 
